@@ -92,6 +92,8 @@ Two transactions are represented by the above CSV file:
       - +70.00 USD
     - Account = Income:Dividend Income:Dividend Income USD:BND Dividend
       - -100.00 USD
+    - Account = Assets:Investments:Bond:BND
+      - +0.00 USD (a dummy split so GnuCash can track the return of BND)
     - Account = Expenses:Taxes:Federal:Taxes Withholding:Taxes Withholding USD:2020 Taxes Withholding USD
       - +30.00 USD
       
