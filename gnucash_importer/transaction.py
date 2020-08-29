@@ -15,7 +15,7 @@ class RawSplit(object):
             return float(self.value)
         return 0.0
 
-    def create_split(self, book, transaction):
+    def create_split(self, book, transaction, not_cleared=False):
         split = gnucash.Split(book)
         if self.value:
             split.SetValue(gnucash.GncNumeric(self.value))
@@ -24,6 +24,8 @@ class RawSplit(object):
         root_acct = book.get_root_account()
         acct = utils.lookup_account(root_acct, self.account)
         split.SetAccount(acct)
+        if not not_cleared:
+            split.SetReconcile('c')
         split.SetParent(transaction)
 
     def validate(self, book=None):
@@ -60,7 +62,7 @@ class RawTransaction(object):
 
         return abs(balance) <= 1e-9
 
-    def create_transaction(self, book):
+    def create_transaction(self, book, not_cleared=False):
         comm_table = book.get_table()
         ns, symbol = [x for x in self.commodity.split(':') if x]
         commodity = comm_table.lookup(ns, symbol)
@@ -70,7 +72,7 @@ class RawTransaction(object):
         trans.SetCurrency(commodity)
         trans.SetDescription(self.description)
 
-        for split in self.splits:
-            split.create_split(book, trans)
+        for idx, split in enumerate(self.splits):
+            split.create_split(book, trans, not_cleared=idx > 0 or not_cleared)
 
         trans.CommitEdit()

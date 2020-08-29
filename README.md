@@ -45,10 +45,12 @@ python
 Use the following command to import all transactions in `CSV_FILE_PATH` into `GNUCASH_FILE_PATH`.
 
 ```bash
-python -m gnucash_importer GNUCASH_FILE_PATH CSV_FILE_PATH
+python -m gnucash_importer GNUCASH_FILE_PATH CSV_FILE_PATH [--not-cleared]
 ```
 
 Note that you should not open the GnuCash file while importing because only one program can edit the file. Also, `gnucash-importer` does not do any matching currently, so **all valid transactions in the CSV file will be inserted into the GnuCash file even if they already existed**. Also note that the program will skip transactions that are imbalanced.
+
+By default, the first split of a imported transaction has a `c` reconcile status (R field) to make it easy to identify the imported transactions. Setting `--not-cleared` would instead use a `n` status.
 
 ## CSV File Format
 

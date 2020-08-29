@@ -9,6 +9,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('gnucash_path')
     parser.add_argument('csv_path')
+    parser.add_argument('--not-cleared', action='store_true')
     return parser.parse_args()
 
 
@@ -32,7 +33,7 @@ def main():
         book = session.book
         print('Start inserting transactions...')
         for txn in txns:
-            txn.create_transaction(book)
+            txn.create_transaction(book, not_cleared=args.not_cleared)
     print('Done!')
 
 
