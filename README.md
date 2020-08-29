@@ -25,7 +25,7 @@ mkdir build                               # create the build directory
 cd build                                  # change into the build directory
 
 # Set the installation direction to the conda enviroment we created, enable Python bindings
-cmake -DCMAKE_INSTALL_PREFIX=$HOME/conda/envs/gnucash-importer -DWITH_PYTHON=True
+cmake -DCMAKE_INSTALL_PREFIX=$HOME/conda/envs/gnucash-importer -DWITH_PYTHON=ON
 
 make
 make install
