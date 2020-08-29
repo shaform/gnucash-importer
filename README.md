@@ -2,6 +2,8 @@
 Utilities to import transactions into GnuCash
 
 
+The gnucash-importer enables fast insertion of transactions into a [GnuCash](https://www.gnucash.org/) file. The program does not do any transaction matching or account matching so its speed is much faster than the importing tools provided by GnuCash itself. Typically, other scripts are used to generate the CSV files to be imported by converting the trasaction records downloaded from the bank. Then, the generated CSV files can be imported by `gnucash-importer` into the GnuCash file.
+
 ## Install Dependencies
 This program requires [GnuCash Python bindings](https://wiki.gnucash.org/wiki/Python_Bindings). On Ubuntu/Debian systems, the easiest way to install Python bindings is as follows:
 
@@ -44,7 +46,7 @@ Use the following command to import all transactions in `CSV_FILE_PATH` into `GN
 python -m gnucash_importer GNUCASH_FILE_PATH CSV_FILE_PATH
 ```
 
-Note that you should not open the GnuCash file while importing because only one program can edit the file. Also, `gnucash-importer` does not do any matching currently, so **all valid transactions in the CSV file will be inserted into the GnuCash file even if they already existed**. Also note that the problem will skip transactions that are imbalanced.
+Note that you should not open the GnuCash file while importing because only one program can edit the file. Also, `gnucash-importer` does not do any matching currently, so **all valid transactions in the CSV file will be inserted into the GnuCash file even if they already existed**. Also note that the program will skip transactions that are imbalanced.
 
 ## CSV File Format
 
@@ -76,7 +78,7 @@ date,description,commodity,memo,account,amount,value
 ,,,,Assets:Investments:Bond:BND,,
 ,,,W-8 Tax Withholding - BND,Expenses:Taxes:Federal:Taxes Withholding:Taxes Withholding USD:2020 Taxes Withholding USD,,30.00
 ```
-Two transaction are represented by the above CSV file:
+Two transactions are represented by the above CSV file:
 
 1. Purchase VTI
     - Account = Assets:Current Assets:Cash Account:TD Ameritrade
