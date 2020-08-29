@@ -2,7 +2,7 @@
 Utilities to import transactions into GnuCash
 
 
-The gnucash-importer enables fast insertion of transactions into a [GnuCash](https://www.gnucash.org/) file. The program does not do any transaction matching or account matching so its speed is much faster than the importing tools provided by GnuCash itself. Typically, other scripts are used to generate the CSV files to be imported by converting the trasaction records downloaded from the bank. Then, the generated CSV files can be imported by `gnucash-importer` into the GnuCash file.
+The gnucash-importer enables fast insertion of transactions into a [GnuCash](https://www.gnucash.org/) file. The program does not do any transaction matching or account matching so its speed is much faster than the importing tools provided by GnuCash itself. Typically, other scripts are used to generate the CSV files by converting the trasaction records downloaded from the bank. Then, the generated CSV files can be imported by `gnucash-importer` into the GnuCash file.
 
 Note that the program does not automatically create the accounts or the currencies/commodities. You have to create those accounts in advance and the CSV should only contain existing accounts and existing commodities.
 
